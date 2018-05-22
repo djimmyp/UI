@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+ 
+<html>
+<head>
+<title>Tempo</title> 
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> 
+</head> 
+<body>
+
+ <!-- Start of first page -->
+<div data-role="page" id="first">
+<div data-role="header"> 
+<h1 style="height: auto;font-size: 8vw;">Tempo</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:40px;margin-bottom:40px"/>
+<ul data-role="listview" data-inset="true">
+<li><a href="#login" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
+<li><a href="#register" style="text-align: center;height: auto;font-size: 4vw" data-role="button" data-theme="b">Register</a></li> 
+</ul>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /End of first page -->
+
+
+ <!-- Start of login page -->
+<div data-role="page" id="login">
+<div data-role="header">
+<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
+<h1 style="height: auto;font-size: 8vw;">Login</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/>
+<form>
+<!-- 	 <label for="text-3" style="font-size: 4vw">Username</label> -->
+     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Username">
+<!--      <label for="password-2" style="font-size: 4vw">Password</label> -->
+     <input type="password" style="font-size: 4vw" data-clear-btn="true" name="password-2" id="password-2" value="" placeholder="Password" autocomplete="off">
+</form>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#main" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
+</ul>
+<a href="#" style="font-size: 3vw;">Forgot Password</a>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of login page -->
+
+
+ <!-- Start of register page -->
+<div data-role="page" id="register">
+<div data-role="header">
+<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
+<h1 style="height: auto;font-size: 6vw;">New User</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/>
+<form>
+	 <input type="email" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Email">
+<!-- 	 <label for="text-3" style="font-size: 4vw">Username</label> -->
+     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Username">
+<!--      <label for="password-2" style="font-size: 4vw">Password</label> -->
+     <input type="password" style="font-size: 4vw" data-clear-btn="true" name="password-2" id="password-2" value="" placeholder="Password" autocomplete="off">
+</form>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#modes" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Register</a></li> 
+</ul>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of register page -->
+
+
+
+ <!-- Start of modes page -->
+<div data-role="page" id="modes">
+<div data-role="header">
+<h1 style="height: auto;font-size: 5vw;">Let's get started</h1>
+<script>
+$(document).ready(function(){
+    // $("#text1").attr("disabled", true);
+    // $("#text2").attr("disabled", true);
+    // $("#text3").attr("disabled", true);
+    $("#radiob1").click(function(){
+		$("#text1").attr("disabled", false);
+		$("#text2").attr("disabled", true);
+		$("#text3").attr("disabled", true);
+    });
+
+    $("#radiob2").click(function(){
+    	$("#text1").attr("disabled", false);
+		$("#text2").attr("disabled", false);
+		$("#text3").attr("disabled", true);
+    });
+
+    $("#radiob3").click(function(){
+    	$("#text1").attr("disabled", false);
+		$("#text2").attr("disabled", false);
+		$("#text3").attr("disabled", false);
+    });
+});
+</script>
+
+</div><!-- /header -->
+
+
+<div data-role="content" align="center"><!-- content -->
+<div class="ui-bar ui-bar-a">
+    <h1>The app allows you to chose upto 3 different time management modes to suit your needs.</h1>
+</div>
+<!-- <h3>The app allows you to chose upto 3 different time management modes to suit your needs.</h3> -->
+
+<form id="myform" style="margin-top: 100px; margin-bottom: 100px">
+    <fieldset id="myform2" data-role="controlgroup" data-theme="e" data-type="horizontal">
+        <input type="radio" name="radiochoice" id="radiob1" value="off">
+        <label for="radiob1" style="font-size: 4vw">One</label>
+        <input type="radio" name="radiochoice" id="radiob2" value="off">
+        <label for="radiob2" style="font-size: 4vw">Two</label>
+        <input type="radio" name="radiochoice" id="radiob3" value="other">
+        <label for="radiob3" style="font-size: 4vw">Three</label>
+    </fieldset>
+	<br><br><br>
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-1" id="text1" value="" placeholder="Name of mode 1">
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-2" id="text2" value="" placeholder="Name of mode 2">
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-3" id="text3" value="" placeholder="Name of mode 3"><br><br>
+    <input type="submit" style="font-size: 4vw" name="submit" value="Next" id="submittonext">
+</form>
+
+<script>
+$(function()
+{
+    $('#myform').validate({
+        rules: {
+          radiochoice: { 
+          	required: true 
+          }
+        },
+        messages:
+        {
+          radiochoice:
+          {
+            required:"Please select an option<br/>"
+          }
+        },
+        errorElement: "label",
+        errorPlacement: function(error, element) 
+        {
+    		error.insertAfter("#myform2");
+    	} 
+	});
+});
+</script>
+<style type="text/css">
+#modes.ui-page {
+    background: url(wheel.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+#radiochoice-error
+{
+color:red;
+font-family:verdana, Helvetica;
+font-size: 3vw;
+}
+#submittonext {
+    width: 60em;  height: 20em;
+}
+</style>
+
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of modes page -->
+ 
+
+</body>
+</html>
+
