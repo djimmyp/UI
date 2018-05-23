@@ -138,12 +138,14 @@ $(document).ready(function(){
     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-1" id="text1" value="" placeholder="Name of mode 1">
     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-2" id="text2" value="" placeholder="Name of mode 2">
     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-3" id="text3" value="" placeholder="Name of mode 3"><br><br>
-    <input type="submit" href="firstadd" style="font-size: 4vw" name="submit" value="Next" id="submittonext">
+    <input type="submit" style="font-size: 4vw" name="Submit" value="Next" id="submittonext">
 </form>
+
 
 <script>
 $(function()
 {
+    
     $('#myform').validate({
         rules: {
           radiochoice: { 
@@ -157,6 +159,12 @@ $(function()
             required:"Please select an option<br/>"
           }
         },
+
+        submitHandler: function(form) {
+    	// do other things for a valid form
+    	$(location).attr('href', '#firstadd')
+  		},
+
         errorElement: "label",
         errorPlacement: function(error, element) 
         {
@@ -165,6 +173,8 @@ $(function()
 	});
 });
 </script>
+
+
 <style type="text/css">
 #modes.ui-page {
     background: url(wheel.jpg);
@@ -187,10 +197,7 @@ font-weight: 800;
 }
 
 
-/*.btn-group {
-	margin:0 auto;
-    display:block;	
-}*/
+
 .ui-input-btn {
     height: 5vw !important;
     width: 20vw !important;
@@ -220,8 +227,7 @@ padding-left: 40px;
  <!-- Start of firstadd page -->
 <div data-role="page" id="firstadd">
 <div data-role="header">
-<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
-<h1 style="height: auto;font-size: 6vw;">Add tasks for the mode</h1>
+<h1 style="height: auto;font-size: 4vw;">Add tasks for the mode</h1>
 </div><!-- /header -->
 <div data-role="content" align="center"><!-- content -->
 <!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
