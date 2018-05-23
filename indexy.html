@@ -92,6 +92,7 @@
 <h1 style="height: auto;font-size: 5vw;">Let's get started</h1>
 <script>
 $(document).ready(function(){
+	// $("#heading1").hide();
     // $("#text1").attr("disabled", true);
     // $("#text2").attr("disabled", true);
     // $("#text3").attr("disabled", true);
@@ -119,8 +120,8 @@ $(document).ready(function(){
 
 
 <div data-role="content" align="center"><!-- content -->
-<div class="ui-bar ui-bar-a">
-    <h1>The app allows you to chose upto 3 different time management modes to suit your needs.</h1>
+<div id="heading1" class="ui-bar ui-bar-a">
+    <h1>The app allows you to chose upto 3 different time management modes to suit your needs. Go ahead and select the desired number of modes:</h1>
 </div>
 <!-- <h3>The app allows you to chose upto 3 different time management modes to suit your needs.</h3> -->
 
@@ -176,10 +177,34 @@ $(function()
 color:red;
 font-family:verdana, Helvetica;
 font-size: 3vw;
+font-weight: 800;
 }
-#submittonext {
-    width: 60em;  height: 20em;
+
+.ui-controlgroup, fieldset.ui-controlgroup {
+	margin:0 auto !important;
+    display:block !important;
 }
+
+/*.btn-group {
+	margin:0 auto;
+    display:block;	
+}*/
+.ui-input-btn {
+    height: 5vw !important;
+    width: 20vw !important;
+    font-size: 3vw !important;
+
+}
+#heading1 {
+	font-size: 3vw;
+	text-align: left;
+/*	color: black;
+	background: none;
+	border-style: none;*/
+}
+/*#myform2 {
+padding-left: 40px;
+}*/
 </style>
 
 </div><!-- /content -->
