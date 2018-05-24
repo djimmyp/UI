@@ -24,6 +24,13 @@
 <li><a href="#login" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
 <li><a href="#register" style="text-align: center;height: auto;font-size: 4vw" data-role="button" data-theme="b">Register</a></li> 
 </ul>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:relative !important; 
+top: auto !important; 
+width:100%;
+}
+</style>
 </div><!-- /content -->
 <div data-role="footer">
 <h4>CS530 Developing User Interfaces 2018</h4>
@@ -51,6 +58,11 @@
 <li><a href="#main" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
 </ul>
 <a href="#" style="font-size: 3vw;">Forgot Password</a>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
+</style>
 </div><!-- /content -->
 <div data-role="footer">
 <h4>CS530 Developing User Interfaces 2018</h4>
@@ -78,6 +90,11 @@
 <ul data-role="listview" data-inset="true">
 <li><a href="#modes" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Register</a></li> 
 </ul>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
+</style>
 </div><!-- /content -->
 <div data-role="footer">
 <h4>CS530 Developing User Interfaces 2018</h4>
@@ -214,6 +231,9 @@ font-weight: 800;
 /*#myform2 {
 padding-left: 40px;
 }*/
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
 </style>
 
 </div><!-- /content -->
@@ -227,11 +247,42 @@ padding-left: 40px;
  <!-- Start of firstadd page -->
 <div data-role="page" id="firstadd">
 <div data-role="header">
-<h1 style="height: auto;font-size: 4vw;">Add tasks for the mode</h1>
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Select the mode and add tasks</h1>
 </div><!-- /header -->
 <div data-role="content" align="center"><!-- content -->
 <!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
-<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/>
+<!-- <img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/> -->
+<style type="text/css">
+#firstadd.ui-page {
+    background: url(wheel.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-select, .ui-mini{
+	 width: 50%;
+	 overflow: auto;
+	 font-size: 3vw;
+}
+
+.ui-footer {
+bottom:0; position:relative !important; 
+top: auto !important; 
+width:100%;
+}
+</style>
+
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true">
+        <option value="1">The 1st Option</option>
+        <option value="2">The 2nd Option</option>
+        <option value="3">The 3rd Option</option>
+        <option value="4">The 4th Option</option>
+    </select>
+</div>
+</form>
+
 
 </div><!-- /content -->
 <div data-role="footer">
