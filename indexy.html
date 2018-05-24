@@ -314,15 +314,14 @@ table, th, tr {
                             </tr>
                         </thead>
                         <tbody>                                    
-                        <tr>
+                        	<tr>
                                 <td><input id="task" class="" name="task[]" type="text" /></td>
                                 <td><input id="hours" class="" name="hours[]" type="number" /></td>
                                 <td><input id="starttime" class="" name="starttime[]" type="time" /></td>
                                 <td><input id="endtime" class="" name="endtime[]" type="time" /></td>
-                                <td><a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" >add</a></td>
-                                
-</tr>
-</tbody>
+                                <td><a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" >add</a></td> 
+							</tr>
+						</tbody>
 </table>
 
 <script>
@@ -339,7 +338,6 @@ var newRowNum = 0;
 $('#addnew').click(function() {
 
     // $(".datepick").datepicker("destroy");
-
     // increment the counter
     newRowNum = $(productTable).children('tbody').children('tr').length + 1;
 
@@ -358,7 +356,7 @@ $('#addnew').click(function() {
     $('input', addRow).val('');
 
     // insert a remove link in the last cell
-    $('td:last-child', newRow).html('<a href="" class="remove"><i class="icon-minus"><\/i><\/a>');
+    $('td:last-child', newRow).html('<a href="" class="remove"><i>del<\/i><\/a>');
 
 
     // insert the new row into the table
@@ -384,6 +382,10 @@ $('#addnew').click(function() {
     return false;
 });
 
+
+// $('#del').click(function(){
+//     $(this).parent().parent().remove();
+// });
 
 
 // remove's default rows
