@@ -284,9 +284,19 @@ table, th, tr {
     background-color: green !important;
     color: green;
 }*/
+
 #addnew.ui-btn:before {
       background-color: green !important;
       box-shadow: none !important;
+}
+.btnn{
+    color: white;
+    background-color: red;
+    height: 5.5vw;
+    width: 5.5vw;
+    font-size: 3vw;
+    border-radius: 50%;
+    border: 1px solid #000;
 }
 </style>
 
@@ -356,7 +366,8 @@ $('#addnew').click(function() {
     $('input', addRow).val('');
 
     // insert a remove link in the last cell
-    $('td:last-child', newRow).html('<a href="" class="remove"><i>del<\/i><\/a>');
+    // $('td:last-child', newRow).html('<a href="" class="remove"><i>del</i></a>');
+    $('td:last-child', newRow).html('<a class="remove"><button type="button" class="btnn">x</button></a>');
 
 
     // insert the new row into the table
@@ -381,11 +392,6 @@ $('#addnew').click(function() {
     // prevent the default click
     return false;
 });
-
-
-// $('#del').click(function(){
-//     $(this).parent().parent().remove();
-// });
 
 
 // remove's default rows
