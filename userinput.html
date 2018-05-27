@@ -1,0 +1,52 @@
+<html>
+  <head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+  <body>
+    <div id="piechart">
+    <form method="post" action="#" id="formvalue">
+      Value #1: <input type="text" id="tname" required><br>
+      Value #2: <input type="number" id="hnum" required><br><br>
+      <input type="submit" value="Submit" onclick="drawChart(); return false;">
+    </form>
+    </div>
+    <div id="graphs">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      var name = 'test';
+      var time = 9;
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        name = document.getElementById('tname').value;
+        ti = document.getElementById('hnum').value;
+        // name='abc';
+        // ti=11;
+        // var data = google.visualization.arrayToDataTable([
+        // name = document.getElementById('tname');
+        // ti = document.getElementById('hnum');
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Timeneeded'],
+          [name, ti]  
+        ]);
+
+
+        var options = {
+          title: 'My Daily Activities','width':500,'height':400
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    </div>
+    <div id="chart_div"></div>
+    <style>
+    </style>
+  </body>
+</html>
