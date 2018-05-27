@@ -304,9 +304,9 @@ table, th, tr {
 <form>
 <div class="ui-field-contain">
     <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
-        <option value="1">The 1st Option</option>
-        <option value="2">The 2nd Option</option>
-        <option value="3">The 3rd Option</option>
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
     </select>
 </div>
 </form>
@@ -334,6 +334,10 @@ table, th, tr {
 							</tr>
 						</tbody>
 </table>
+<ul data-role="listview" data-inset="true">
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Submit</a></li> 
+</ul>
+
 
 <script>
 
@@ -407,6 +411,38 @@ $('.removeDefault').click(function() {
 <h4>CS530 Developing User Interfaces 2018</h4>
 </div>
 </div><!-- /end of firstadd page -->
+
+
+
+ <!-- Start of display page -->
+<div data-role="page" id="display">
+<div data-role="header">
+<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
+<h1 style="height: auto;font-size: 6vw;">Display</h1>
+</div><!-- /header -->
+
+<div data-role="content" align="center"><!-- content -->
+
+<style type="text/css">
+.ui-footer {
+bottom:0; 
+position:absolute !important; 
+top: auto !important; 
+width:100%;
+}
+#display.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+</style>
+</div><!-- /content -->
+
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of display page -->
 
 
 
