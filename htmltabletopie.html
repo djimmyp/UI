@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+ 
+<html>
+<head>
+<title>Tempo</title> 
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" /> -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="js/chartinator.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>  -->
+</head> 
+<body>
+ <!-- Start of firstadd page -->
+<div data-role="page" id="firstadd">
+<div data-role="header">
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Select the mode and add tasks</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<!-- <img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/> -->
+<style type="text/css">
+#firstadd.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-select, .ui-mini{
+	 width: 50%;
+	 overflow: auto;
+	 font-size: 3vw;
+}
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+}
+#productTable{
+	margin-top: 100px;
+	font-size: 3vw;
+}
+table, th, tr {
+    border: 3px solid black;
+}
+
+#addnew.ui-btn:before {
+      background-color: green !important;
+      box-shadow: none !important;
+}
+.btnn{
+    color: white;
+    background-color: red;
+    height: 5.5vw;
+    width: 5.5vw;
+    font-size: 2vw;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+</style>
+
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
+    </select>
+</div>
+</form>
+
+<div id="headingafter" class="ui-bar ui-bar-a" style="font-size: 3vw">
+    <h2>How much time do you spend on these tasks:</h2>
+</div>
+
+<table id="productTable" class="table table-striped table-condensed">
+                            <tr>
+                                <th style="color: black; width: 25%">Task</th>
+                                <th style="color: black; width: 25%">Hours</th>
+                            </tr>                                
+                        	<tr>
+                                <td><input id="task" class="" name="task[]" type="text" /></td>
+                                <td><input id="hours" class="" name="hours[]" type="number" /></td>
+                                <td><a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" >add</a></td> 
+							</tr>
+</table>
+<ul data-role="listview" data-inset="true">
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="calcu(); return false;">Submit</a></li> 
+</ul>
+
+
+<script>
+
+
+$(function()
+{
+
+var newRowNum = 0;
+});
+
+$('#addnew').click(function() {
+
+    newRowNum = $(productTable).children('tbody').children('tr').length + 1;
+    var addRow = $(this).parent().parent();
+    var newRow = addRow.clone();
+    $('input', addRow).val('');
+    $('td:last-child', newRow).html('<a class="remove"><button type="button" class="btnn">x</button></a>');
+    addRow.before(newRow);
+    $('a.remove', newRow).click(function() {
+        $(this).closest('tr').remove();
+        return false;
+    });
+
+    $('#date', newRow).each(function(i) {
+        var newID = 'date_' + newRowNum;
+        $(this).attr('id', newID);
+
+    });
+
+    return false;
+});
+
+$('.removeDefault').click(function() {
+    $(this).closest('tr').remove();
+    return false;
+});
+
+
+function calcu() {
+var chart1 = $('#productTable').chartinator({
+
+        // The jQuery selector of the HTML table element to extract the data from - String
+        // Default: false
+        // If unspecified, the element this plugin is applied to must be the HTML table
+        tableSel: '.productTable',
+
+        // The chart type - String
+        // Default: 'BarChart'
+        // Options: BarChart, PieChart, ColumnChart, Calendar, GeoChart, Table.
+        chartType: 'PieChart',
+
+        // Google Bar Chart Options
+        // barChart: {
+        //    ...
+        // },
+
+        // Show table as well as chart - String
+        // Options: 'show', 'hide', 'remove'
+        showTable: 'show'
+
+        });
+
+}
+</script>
+
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of firstadd page -->
+</body>
+</html>
+
+
