@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamically Add Remove Table Rows in JavaScript</title>
+
+    <style>
+        table 
+        {
+            width: 70%;
+            font: 17px Calibri;
+        }
+        table, th, td 
+        {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="createTable()">
+    <ps>Click the "Add New Row" button to add row to the table. Enter values in each row and press the "Submit Data" button. You can check the result in your browsers console window.</p>
+    <p>
+        <input type="button" id="addRow" value="Add New Row" onclick="addRow()" />
+    </p>
+
+    <!--THE CONTAINER WHERE WE'll ADD THE DYNAMIC TABLE-->
+    <div id="cont"></div>
+
+    <p><input type="button" id="bt" value="Sumbit Data" onclick="sumbit()" /></p>
+</body>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="js/chartinator.js"></script>
+    <script type="text/javascript">
+    // ARRAY FOR HEADER.
+    var arrHead = new Array();
+    arrHead = ['', 'Task', 'Hours'];      // SIMPLY ADD OR REMOVE VALUES IN THE ARRAY FOR TABLE HEADERS.
+
+    // FIRST CREATE A TABLE STRUCTURE BY ADDING A FEW HEADERS AND
+    // ADD THE TABLE TO YOUR WEB PAGE.
+    function createTable() 
+    {
+        var empTable = document.createElement('table');
+        empTable.setAttribute('id', 'empTable');            // SET THE TABLE ID.
+
+        var tr = empTable.insertRow(-1);
+
+        for (var h = 0; h < arrHead.length; h++) 
+        {
+            var th = document.createElement('th');          // TABLE HEADER.
+            th.innerHTML = arrHead[h];
+            tr.appendChild(th);
+        }
+
+        var div = document.getElementById('cont');
+        div.appendChild(empTable);    // ADD THE TABLE TO YOUR WEB PAGE.
+    }
+
+    // ADD A NEW ROW TO THE TABLE.s
+    function addRow() 
+    {
+        var empTab = document.getElementById('empTable');
+
+        var rowCnt = empTab.rows.length;        // GET TABLE ROW COUNT.
+        var tr = empTab.insertRow(rowCnt);      // TABLE ROW.
+        tr = empTab.insertRow(rowCnt);
+
+        for (var c = 0; c < arrHead.length; c++) 
+        {
+            var td = document.createElement('td');          // TABLE DEFINITION.
+            td = tr.insertCell(c);
+
+            if (c == 0) 
+            {           // FIRST COLUMN.
+                // ADD A BUTTON.
+                var button = document.createElement('input');
+
+                // SET INPUT ATTRIBUTE.
+                button.setAttribute('type', 'button');
+                button.setAttribute('value', 'Remove');
+
+                // ADD THE BUTTON's 'onclick' EVENT.
+                button.setAttribute('onclick', 'removeRow(this)');
+
+                td.appendChild(button);
+            }
+            else 
+            {
+                // CREATE AND ADD TEXTBOX IN EACH CELL.
+                var ele = document.createElement('input');
+                ele.setAttribute('type', 'text');
+                ele.setAttribute('value', '');
+
+                td.appendChild(ele);
+            }
+        }
+    }
+
+    // DELETE TABLE ROW.
+    function removeRow(oButton) 
+    {
+        var empTab = document.getElementById('empTable');
+        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);       // BUTTON -> TD -> TR.
+    }
+
+    // EXTRACT AND SUBMIT TABLE DATA.
+    function sumbit() 
+    {
+        var myTab = document.getElementById('empTable');
+        var values = new Array();
+
+        // LOOP THROUGH EACH ROW OF THE TABLE.
+        for (row = 1; row < myTab.rows.length - 1; row++) 
+        {
+            for (c = 0; c < myTab.rows[row].cells.length; c++) 
+            {   // EACH CELL IN A ROW.
+
+                var element = myTab.rows.item(row).cells[c];
+                if (element.childNodes[0].getAttribute('type') == 'text') 
+                {
+                    values.push("'" + element.childNodes[0].value + "'");
+                }
+            }
+        }
+        console.log(values);
+            var chart2 = $('#empTable').chartinator({
+
+                // Custom Options ------------------------------------------------------
+                // Note: This example appends data from a data array
+                // to the data extracted from an HTML table
+                // Google Charts does not support custom tooltips or annotations on Pie Charts
+
+                // Append the following rows of data to the data extracted from the table
+                // rows: [
+                //     ['France', 5],
+                //     ['Mexico', 2]],
+
+                // Create Table - String
+                // Create a basic HTML table or a Google Table Chart from chart data
+                // Options: false, 'basic-table', 'table-chart'
+                // Note: This table will replace an existing HTML table
+                createTable: 'table-chart',
+
+                // The data title
+                // A title used to identify the set of data
+                // Used as a caption when generating an HTML table
+                dataTitle: 'Pie Chart Data - Table Chart',
+
+                // The chart type - String
+                // Derived from the Google Charts visualization class name
+                // Default: 'BarChart'
+                // Use TitleCase names. eg. BarChart, PieChart, ColumnChart, Calendar, GeoChart, Table.
+                // See Google Charts Gallery for a complete list of Chart types
+                // https://developers.google.com/chart/interactive/docs/gallery
+                chartType: 'PieChart',
+
+                // The class to apply to the chart container element
+                chartClass: 'col',
+
+                // The class to apply to the table element
+                tableClass: 'col-table',
+
+                // The chart aspect ratio custom option - width/height
+                // Used to calculate the chart dimensions relative to the width or height
+                // this is overridden if the Google Chart's height and width options have values
+                // Suggested value: 1.25
+                // Default: false - not used
+                //chartAspectRatio: 1.25,
+
+                // Google Pie Chart Options
+                empTable: {
+
+                    // Width of chart in pixels - Number
+                    // Default: automatic (unspecified)
+                    width: null,
+
+                    // Height of chart in pixels - Number
+                    // Default: automatic (unspecified)
+                    height: 300,
+
+                    chartArea: {
+                        left: "6%",
+                        top: 30,
+                        width: "94%",
+                        height: "100%"
+                    },
+
+                    // The font size in pixels - Number
+                    // Or use css selectors as keywords to assign font sizes from the page
+                    // For example: 'body'
+                    // Default: false - Use Google Charts defaults
+                    fontSize: 'body',
+
+                    // The font family name. String
+                    // Default: body font family
+                    fontName: 'Roboto',
+
+                    // Chart Title - String
+                    // Default: Table caption.
+                    //title: 'Pie Chart',
+
+                    titleTextStyle: {
+
+                        // The font size in pixels - Number
+                        // Or use css selectors as keywords to assign font sizes from the page
+                        // For example: 'body'
+                        // Default: false - Use Google Charts defaults
+                        fontSize: 'h4'
+                    },
+                    legend: {
+
+                        // Legend position - String
+                        // Options: bottom, top, left, right, in, none.
+                        // Default: right
+                        position: 'right'
+                    },
+
+                    // Array of colours
+                    colors: ['#94ac27', '#3691ff', '#e248b3', '#f58327', '#bf5cff'],
+
+                    // Make chart 3D - Boolean
+                    // Default: false.
+                    is3D: true,
+
+                    tooltip: {
+
+                        // Shows tooltip with values on hover - String
+                        // Options: focus, none.
+                        // Default: focus
+                        trigger: 'focus'
+                    }
+                },
+                // Show table as well as chart - String
+                // Options: 'show', 'hide', 'remove'
+                showTable: 'show'
+            });
+    }
+
+
+
+
+</script>
+</html>
