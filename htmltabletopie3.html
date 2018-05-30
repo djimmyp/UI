@@ -97,6 +97,7 @@ table, th, tr {
 
 <ul data-role="listview" data-inset="true">
 <li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="drawChart(); return false;">Submit</a></li> 
+<!-- <li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="location.href='#test'">Submit</a></li>  -->
 </ul>
 
 
@@ -133,7 +134,7 @@ $("#addnew").click(function () {
 
 
 google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
+// google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
   
