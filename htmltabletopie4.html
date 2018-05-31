@@ -96,13 +96,12 @@ table, th, tr {
 </table>
 
 <ul data-role="listview" data-inset="true">
-<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="handleChange()">Submit</a></li> 
-<!-- <li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="location.href='#test'">Submit</a></li>  -->
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="validationofinputs()">Submit</a></li> 
+
 </ul>
 
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
 
 $(function()
@@ -131,7 +130,7 @@ $("#addnew").click(function () {
     });
 });
 
-function handleChange() {
+function validationofinputs() {
 		
         var myvalues = document.getElementsByName("hours[]");
         var x;
@@ -145,45 +144,13 @@ function handleChange() {
         }
     }
     if(flag==1)
-        drawChart();
+        location.href='#test';
     else
     	alert("Duration should be between 0 - 24");
     }
 
 
-google.charts.load("current", {packages:["corechart"]});
-// google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-var mytable = document.getElementById('pieChart');
-var myinputs = mytable.getElementsByTagName('input');
-// for (var i = 0; i < myinputs.length; i++) 
-// {
-//     console.log(myinputs[i].value);
-// }
-var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Task');
-  data.addColumn('number', 'Time');
-  
-
-  // load data
-  for (var i = 0; i < (myinputs.length-1); i=i+2) {
-    var row = [String(myinputs[i].value), Number(myinputs[i+1].value)];
-    console.log(row);
-    data.addRow(row);
-  }
-
-  var options = {title: 'My Daily Activities'};
-
-  var chart = new  google.visualization.PieChart(document.getElementById('table_div'));
-  chart.draw(data, options);
-}
-
-
-
 </script>
-<div id='table_div' style="width: 900px; height: 500px;"></div>
 </div><!-- /content -->
 <div data-role="footer">
 <h4>CS530 Developing User Interfaces 2018</h4>
@@ -199,7 +166,45 @@ var data = new google.visualization.DataTable();
 <div data-role="header">
 <h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Test</h1>
 </div>
-<div data-role="content" align="center">
+<div data-role="content" align="center" onload="drawChart()">
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+var mytable = document.getElementById('pieChart');
+var myinputs = mytable.getElementsByTagName('input');
+var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Task');
+  data.addColumn('number', 'Time');
+  
+  data.addRows([
+        ['Pepperoni', 33],
+        ['Hawaiian', 26],
+        ['Mushroom', 22],
+        ['Sausage', 10], // Below limit.
+        ['Anchovies', 9] // Below limit.
+      ]);
+
+  // load data
+  // for (var i = 0; i < (myinputs.length-1); i=i+2) 
+  // {
+  //   var row = [String(myinputs[i].value), Number(myinputs[i+1].value)];
+  //   console.log(row);
+  //   data.addRow(row);
+  // }
+
+  var options = {title: 'My Daily Activities'};
+
+  var chart = new  google.visualization.PieChart(document.getElementById('table_div'));
+  chart.draw(data, options);
+}
+</script>
+<div id='table_div' style="width: 900px; height: 500px;"></div>
 </div>
 </div>
 
