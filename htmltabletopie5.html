@@ -165,7 +165,10 @@ function validationofinputs()
       {
         myoutputs[i]=myinputs[i].value;
       }
-
+      console.log(myoutputs);
+      myoutputs[i]="free";
+      myoutputs[i+1]=24-sumtotal;
+      console.log(myoutputs);
 	  localStorage.setItem("firststore", JSON.stringify(myoutputs)); 
       window.location.href='#test',true;
     }
