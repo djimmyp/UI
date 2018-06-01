@@ -208,10 +208,10 @@ function drawChart()
 
     for (var i = 0; i < (correctinputs.length-1); i=i+2) 
     {
-       console.log(correctinputs[i].value);
-       console.log(correctinputs[i+1].value);
-       data.addRow([String(correctinputs[i].value), Number(correctinputs[i+1].value)]);
-       console.log([String(correctinputs[i].value), Number(correctinputs[i+1].value)]);
+       console.log(correctinputs[i]);
+       console.log(correctinputs[i+1]);
+       data.addRow([String(correctinputs[i]), Number(correctinputs[i+1])]);
+       console.log([String(correctinputs[i]), Number(correctinputs[i+1])]);
       // var row = [String(correctinputs[i].value), Number(correctinputs[i+1].value)];
       // console.log(row);
       // data.addRow(row);
