@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+ 
+<html>
+<head>
+<title>Tempo</title> 
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" /> -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="js/chartinator.js"></script> -->
+
+</head> 
+<body>
+ <!-- Start of firstadd page -->
+<div data-role="page" id="firstadd">
+<div data-role="header">
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Select the mode and add tasks</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+
+<style type="text/css">
+#firstadd.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-select, .ui-mini{
+	 width: 50%;
+	 overflow: auto;
+	 font-size: 3vw;
+}
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+}
+#productTable{
+	margin-top: 100px;
+	font-size: 3vw;
+}
+table, th, tr {
+    border: 3px solid black;
+}
+
+#addnew.ui-btn:before {
+      background-color: green !important;
+      box-shadow: none !important;
+}
+.btnn{
+    color: white;
+    background-color: red;
+    height: 5.5vw;
+    width: 5.5vw;
+    font-size: 2vw;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+
+
+</style>
+
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
+    </select>
+</div>
+</form>
+
+<div id="headingafter" class="ui-bar ui-bar-a" style="font-size: 3vw">
+    <h2>How much time do you spend on these tasks:</h2>
+</div>
+
+<a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" >add</a>
+
+<table id="pieChart" class="pieChart">
+                            <tr>
+                                <th scope="col" data-type="string" style="color: black; width: 25%; background: transparent">Task</th>
+                                <th scope="col" data-type="number" style="color: black; width: 25%; background: transparent; border: 3px solid black; border-radius:initial">Duration (0 - 24)</th>
+                                
+                            </tr>                                
+                        	<tr>
+                                <td><input type="text" id="task" name="task[]"></td>
+                                <td><input type="number" id="hours" name="hours[]" min="0" max="24"></td>
+							</tr>
+</table>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="validationofinputs()">Submit</a></li> 
+
+</ul>
+
+
+<script type="text/javascript">
+
+
+$(function()
+{
+
+var newRowNum = 0;
+});
+
+
+
+$("#addnew").click(function () { 
+
+    $("#pieChart").each(function () {
+       
+        var tds = '<tr>';
+        jQuery.each($('tr:last td', this), function () {
+            tds += '<td>' + $(this).html() + '</td>';
+        });
+        tds += '</tr>';
+        if ($('tbody', this).length > 0) {
+            $('tbody', this).append(tds);
+        } else {
+            $(this).append(tds);
+        }
+
+    });
+});
+
+function validationofinputs() 
+{
+		
+    var myvalues = document.getElementsByName("hours[]");
+    var x;
+    var flag=1;
+    for (var i = 0; i < (myvalues.length); i=i+1) 
+    {
+      x=Number(myvalues[i].value);
+
+      if (x < 0 || x > 24 || x === "") 
+      {
+          flag=0;            
+      }
+    }
+    if(flag==1)
+    {
+      //localStorage.removeItem("firststore");
+      var mytable = document.getElementById('pieChart');
+	    var myinputs = mytable.getElementsByTagName('input');
+      var myoutputs=[];
+      //console.log(myinputs);
+      for (var i = 0; i < (myinputs.length); i=i+1) 
+      {
+        //console.log(myinputs[i].value);
+        myoutputs[i]=myinputs[i].value;
+      }
+      //console.log(myoutputs);
+	    localStorage.setItem("firststore", JSON.stringify(myoutputs)); 
+      window.location.href='#test',true;
+    }
+    else
+    	alert("Duration should be between 0 - 24");
+}
+
+
+</script>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of firstadd page -->
+
+
+
+
+
+<div data-role="page" id="test">
+<div data-role="header">
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Test</h1>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('visualization', '1', {'packages':['corechart']});
+var myretrievedinputs;
+var correctinputs;
+$('#test').on('pageshow', function () {
+myretrievedinputs = localStorage.getItem("firststore");
+correctinputs = JSON.parse(myretrievedinputs);
+google.charts.setOnLoadCallback(drawChart);
+});
+
+
+
+function drawChart()
+{
+  alert('Working');
+  console.log(correctinputs.length);
+
+
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Task');
+    data.addColumn('number', 'Time');
+
+    for (var i = 0; i < (correctinputs.length-1); i=i+2) 
+    {
+       console.log(correctinputs[i].value);
+       console.log(correctinputs[i+1].value);
+       data.addRow([String(correctinputs[i].value), Number(correctinputs[i+1].value)]);
+       console.log([String(correctinputs[i].value), Number(correctinputs[i+1].value)]);
+      // var row = [String(correctinputs[i].value), Number(correctinputs[i+1].value)];
+      // console.log(row);
+      // data.addRow(row);
+    }
+  
+    var options = {title: 'My Daily Activities'};
+
+    var chart = new  google.visualization.PieChart(document.getElementById('table_div'));
+    chart.draw(data, options);
+  }
+
+
+</script>
+</div>
+<!-- <div data-role="content" align="center"> -->
+<div data-role="content" align="center">
+
+
+<div id='table_div' style="width: 900px; height: 500px;"></div>
+
+
+
+</div>
+</div>
+
+</body>
+</html>
+
+
