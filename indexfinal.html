@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+ 
+<html>  
+<head>
+<title>Tempo</title> 
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+
+
+</head> 
+<body>
+
+
+
+ <!-- Start of first page -->
+<div data-role="page" id="first">
+<div data-role="header"> 
+<h1 style="height: auto;font-size: 8vw;">Tempo</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:40px;margin-bottom:40px"/>
+<ul data-role="listview" data-inset="true">
+<li><a href="#login" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
+<li><a href="#register" style="text-align: center;height: auto;font-size: 4vw" data-role="button" data-theme="b">Register</a></li> 
+</ul>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:relative !important; 
+top: auto !important; 
+width:100%;
+}
+</style>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /End of first page -->
+
+
+ <!-- Start of login page -->
+<div data-role="page" id="login">
+<div data-role="header">
+<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
+<h1 style="height: auto;font-size: 8vw;">Login</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/>
+<form>
+<!--   <label for="text-3" style="font-size: 4vw">Username</label> -->
+     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Username">
+<!--      <label for="password-2" style="font-size: 4vw">Password</label> -->
+     <input type="password" style="font-size: 4vw" data-clear-btn="true" name="password-2" id="password-2" value="" placeholder="Password" autocomplete="off">
+</form>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#main" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Login</a></li> 
+</ul>
+<a href="#" style="font-size: 3vw;">Forgot Password</a>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
+</style>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of login page -->
+
+
+ <!-- Start of register page -->
+<div data-role="page" id="register">
+<div data-role="header">
+<a style="font-size: 4vw" data-rel= "back" back-btn="true">Back</a>
+<h1 style="height: auto;font-size: 6vw;">New User</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+<!-- <p style="font-style: italic;">Nobody does time management better!</p> -->
+<img id="Drexel" src="wheel.jpg" width="100%" style="margin-top:15px;margin-bottom:15px"/>
+<form>
+   <input type="email" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Email">
+<!--   <label for="text-3" style="font-size: 4vw">Username</label> -->
+     <input type="text" style="font-size: 4vw" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Username">
+<!--      <label for="password-2" style="font-size: 4vw">Password</label> -->
+     <input type="password" style="font-size: 4vw" data-clear-btn="true" name="password-2" id="password-2" value="" placeholder="Password" autocomplete="off">
+</form>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#modes" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b">Register</a></li> 
+</ul>
+<style type="text/css">
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
+</style>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of register page -->
+
+
+
+ <!-- Start of modes page -->
+<div data-role="page" id="modes">
+<div data-role="header">
+<h1 style="height: auto;font-size: 5vw;">Let's get started</h1>
+<script>
+$(document).ready(function(){
+  // $("#heading1").hide();
+    // $("#text1").attr("disabled", true);
+    // $("#text2").attr("disabled", true);
+    // $("#text3").attr("disabled", true);
+    $("#radiob1").click(function(){
+    $("#text1").attr("disabled", false);
+    $("#text2").attr("disabled", true);
+    $("#text3").attr("disabled", true);
+    });
+
+    $("#radiob2").click(function(){
+      $("#text1").attr("disabled", false);
+    $("#text2").attr("disabled", false);
+    $("#text3").attr("disabled", true);
+    });
+
+    $("#radiob3").click(function(){
+      $("#text1").attr("disabled", false);
+    $("#text2").attr("disabled", false);
+    $("#text3").attr("disabled", false);
+    });
+});
+</script>
+
+</div><!-- /header -->
+
+
+<div data-role="content" align="center"><!-- content -->
+<div id="heading1" class="ui-bar ui-bar-a">
+    <h1>The app allows you to chose upto 3 different time management modes to suit your needs. Go ahead and select the desired number of modes:</h1>
+</div>
+
+
+<form id="myform" style="margin-top: 100px; margin-bottom: 100px">
+    <fieldset id="myform2" data-role="controlgroup" data-theme="e" data-type="horizontal">
+        <input type="radio" name="radiochoice" id="radiob1" value="off">
+        <label for="radiob1" style="font-size: 4vw">One</label>
+        <input type="radio" name="radiochoice" id="radiob2" value="off">
+        <label for="radiob2" style="font-size: 4vw">Two</label>
+        <input type="radio" name="radiochoice" id="radiob3" value="other">
+        <label for="radiob3" style="font-size: 4vw">Three</label>
+    </fieldset>
+  <br><br><br>
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-1" id="text1" value="" placeholder="Name of mode 1">
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-2" id="text2" value="" placeholder="Name of mode 2">
+    <input type="text" style="font-size: 4vw" data-clear-btn="true" name="textn-3" id="text3" value="" placeholder="Name of mode 3"><br><br>
+    <input type="submit" style="font-size: 4vw" name="Submit" value="Next" id="submittonext">
+</form>
+
+
+<script>
+$(function()
+{
+    
+    $('#myform').validate({
+        rules: {
+          radiochoice: { 
+            required: true 
+          }
+        },
+        messages:
+        {
+          radiochoice:
+          {
+            required:"Please select an option<br/>"
+          }
+        },
+
+        submitHandler: function(form) {
+      // do other things for a valid form
+      $(location).attr('href', '#firstadd')
+      },
+
+        errorElement: "label",
+        errorPlacement: function(error, element) 
+        {
+        error.insertAfter("#myform2");
+      } 
+  });
+});
+</script>
+
+
+<style type="text/css">
+#modes.ui-page {
+    background: url(wheel.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+#radiochoice-error
+{
+color:red;
+font-family:verdana, Helvetica;
+font-size: 3vw;
+font-weight: 800;
+}
+
+.ui-controlgroup, fieldset.ui-controlgroup {
+/*  margin:0 auto !important;
+    display:block !important;*/
+    padding-left: 200px;
+}
+
+
+
+.ui-input-btn {
+    height: 5vw !important;
+    width: 20vw !important;
+    font-size: 3vw !important;
+
+}
+#heading1 {
+  font-size: 3vw;
+  text-align: left;
+/*  color: black;
+  background: none;
+  border-style: none;*/
+}
+/*#myform2 {
+padding-left: 40px;
+}*/
+.ui-footer {
+bottom:0; position:absolute !important; top: auto !important; width:100%;
+}
+</style>
+
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of modes page -->
+
+
+
+<!-- Start of firstadd page -->
+<div data-role="page" id="firstadd">
+<div data-role="header">
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Select the mode and add tasks</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+
+<style type="text/css">
+#firstadd.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-select, .ui-mini{
+	 width: 50%;
+	 overflow: auto;
+	 font-size: 3vw;
+}
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+}
+#productTable{
+	margin-top: 100px;
+	font-size: 3vw;
+}
+#pieChart{
+	font-size: 3vw;
+}
+table, th, tr {
+    border: 3px solid black;
+}
+
+
+.btnn{
+    color: white;
+    background-color: red;
+    height: 5.5vw;
+    width: 5.5vw;
+    font-size: 2vw;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+
+
+</style>
+
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
+    </select>
+</div>
+</form>
+
+<div id="headingafter" class="ui-bar ui-bar-a" style="font-size: 3vw">
+    <h2>How much time do you spend on these tasks:</h2>
+</div>
+<!-- <a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true">add</a> -->
+<a id="addnew" href="" data-role="button" data-theme="b" data-inline="true" style="text-align: center;height: auto;font-size: 2vw; margin-bottom: 20px">Add row</a>
+
+<table id="pieChart" class="pieChart">
+                            <tr>
+                                <th scope="col" data-type="string" style="color: black; width: 25%; background: transparent">Task</th>
+                                <th scope="col" data-type="number" style="color: black; width: 25%; background: transparent; border: 3px solid black; border-radius:initial">Duration (0 - 24)</th>
+                                
+                            </tr>                                
+                        	<tr>
+                                <td><input type="text" id="task" name="task[]"></td>
+                                <td><input type="number" id="hours" name="hours[]" min="0" max="24"></td>
+							</tr>
+</table>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="validationofinputs()">Submit</a></li> 
+
+</ul>
+
+
+<script type="text/javascript">
+
+
+$(function()
+{
+
+var newRowNum = 0;
+});
+
+
+
+$("#addnew").click(function () { 
+
+    $("#pieChart").each(function () {
+       
+        var tds = '<tr>';
+        jQuery.each($('tr:last td', this), function () {
+            tds += '<td>' + $(this).html() + '</td>';
+        });
+        tds += '</tr>';
+        if ($('tbody', this).length > 0) {
+            $('tbody', this).append(tds);
+        } else {
+            $(this).append(tds);
+        }
+
+    });
+});
+
+function validationofinputs() 
+{
+		
+    var myvalues = document.getElementsByName("hours[]");
+    var x;
+    var flag=1;
+    var sumf=1;
+    var sumtotal=0;
+    for (var i = 0; i < (myvalues.length); i=i+1) 
+    {
+      x=Number(myvalues[i].value);
+
+      if (x < 0 || x > 24 || x === "") 
+      {
+        flag=0;            
+      }
+
+      if(flag==1)
+      	sumtotal=sumtotal+x;
+
+      if(sumtotal>24)
+      {
+      	sumf=0;
+      }
+    }
+
+    if(flag==1 && sumf==1)
+    {
+      var mytable = document.getElementById('pieChart');
+	  var myinputs = mytable.getElementsByTagName('input');
+      var myoutputs=[];
+
+      for (var i = 0; i < (myinputs.length); i=i+1) 
+      {
+        myoutputs[i]=myinputs[i].value;
+      }
+      console.log(myoutputs);
+      myoutputs[i]="free";
+      myoutputs[i+1]=24-sumtotal;
+      console.log(myoutputs);
+	  localStorage.setItem("firststore", JSON.stringify(myoutputs)); 
+	  localStorage.setItem("totalstore", sumtotal); 
+      window.location.href='#test',true;
+    }
+    else if(flag==0 && sumf==1)
+    	alert("Duration should be between 0 - 24");
+    else if(flag==1 && sumf==0)
+    	alert("Total hours spend on tasks has exceeded 24");
+    else
+    	alert("Please check the total and individual task hours entered");    
+}
+
+
+</script>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of firstadd page -->
+
+
+
+
+
+<div data-role="page" id="test"><!-- start of test page -->
+<div data-role="header">
+<!-- <a style="font-size: 3vw" href="#" data-role="button" data-icon="gear" data-iconpos="notext" data-inline="true"></a> -->
+<a style="font-size: 3vw" href="#settings" data-role="button" data-inline="true">Settings</a>
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Chart</h1>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('visualization', '1', {'packages':['corechart']});
+var myretrievedinputs;
+var correctinputs;
+var myretrievedsum;
+
+$('#test').on('pageshow', function () {
+
+myretrievedinputs = localStorage.getItem("firststore");
+correctinputs = JSON.parse(myretrievedinputs);
+myretrievedsum = Number(localStorage.getItem("totalstore"));
+console.log(myretrievedsum);
+$("#progressbar").progressbar('value', myretrievedsum);
+// $("#progresstext").html("<p>myretrievedsum<p>");
+$("#progresstext").html(myretrievedsum+"/24 hrs");
+google.charts.setOnLoadCallback(drawChart);
+
+});
+
+
+
+function drawChart()
+{
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Task');
+    data.addColumn('number', 'Time');
+    for (var i = 0; i < (correctinputs.length-1); i=i+2) 
+    {
+       data.addRow([String(correctinputs[i]), Number(correctinputs[i+1])]);
+    }
+    var options = {
+    	// title: 'My Daily Activities',
+    	chartArea:{left:50,right:50,width:'100%',height:'80%'},
+    	legend:{position:'labeled',textStyle:{fontSize:20}}
+    };
+    var chart = new  google.visualization.PieChart(document.getElementById('table_div'));
+    chart.draw(data, options);
+}
+
+
+</script>
+</div>
+
+<div data-role="content" align="center">
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
+    </select>
+</div>
+</form>
+
+<a style="font-size: 2vw;color: black">Utilization</a>
+
+<div id="bardivs">
+<div id="progressbar"></div>
+<div id="progresstext"></div>
+</div>
+
+<div id='table_div' style="width: 950px; height: 800px; margin-top: 3vw"></div><br>
+<a href="#firstadd" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" style="font-size: 2vw; margin-bottom: 5vw">Add/Edit task</a><br>	
+
+
+
+<script>
+
+
+$( "#progressbar" ).progressbar({
+  value: 0,
+  max: 24
+});
+
+</script>
+
+<style>
+
+#test.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-widget-header 
+{
+  background: hsl(111, 79%, 50%);
+  border: 1px solid #DDDDDD;
+  color: #333333;
+  font-weight: bold;
+  border-color: black;
+}
+
+#bardivs{
+  width: 50%;
+  height: 3vw;
+  position: relative;
+  margin: 1vw;
+}
+
+#progresstext,#progressbar
+{
+  border-color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+
+}
+#progresstext{
+  font-size: 1.5vw;
+  top:0.5vw;
+}
+
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+} 
+
+</style>
+
+</div>
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of test page -->
+
+
+
+
+
+
+<div data-role="page" id="settings"><!-- start of settings page -->
+<div data-role="header">
+
+<a style="font-size: 4vw" href="#test" data-role="button" data-inline="true">Back</a>
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 5vw;">Settings</h1>
+
+
+</div>
+
+<div data-role="content" align="center">
+<br><br><br><br>
+<form>
+<a href="#" style="text-align: center;height: auto;font-size: 4vw; width: 50%" data-role="button" data-theme="b" onclick="clearinfo()">Clear Data</a>
+<a href="#" style="text-align: center;height: auto;font-size: 4vw; width: 50%; margin-bottom: 8vw" data-role="button" data-theme="b">Logout</a>
+</form>
+
+
+<script type="text/javascript">
+function clearinfo() 
+{
+  localStorage.removeItem("firststore");
+  localStorage.removeItem("totalstore");
+  window.location.href='#',true;
+}
+</script>
+
+
+<style>
+
+#settings.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;}  
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+} 
+
+
+</style>
+
+</div>
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of settings page -->
+
+
+</body>
+</html>
+
+
+<!-- localStorage.removeItem("firststore"); -->
