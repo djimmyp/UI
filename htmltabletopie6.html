@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+ 
+  
+<head>
+<title>Tempo</title> 
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+</head> 
+<body>
+ <!-- Start of firstadd page -->
+<div data-role="page" id="firstadd">
+<div data-role="header">
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Select the mode and add tasks</h1>
+</div><!-- /header -->
+<div data-role="content" align="center"><!-- content -->
+
+<style type="text/css">
+#firstadd.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-select, .ui-mini{
+	 width: 50%;
+	 overflow: auto;
+	 font-size: 3vw;
+}
+
+.ui-footer {
+bottom:0; position:absolute !important; 
+top: auto !important; 
+width:100%;
+}
+#productTable{
+	margin-top: 100px;
+	font-size: 3vw;
+}
+table, th, tr {
+    border: 3px solid black;
+}
+
+#addnew.ui-btn:before {
+      background-color: green !important;
+      box-shadow: none !important;
+}
+.btnn{
+    color: white;
+    background-color: red;
+    height: 5.5vw;
+    width: 5.5vw;
+    font-size: 2vw;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+
+
+</style>
+
+<form>
+<div class="ui-field-contain">
+    <select name="select-native-2" id="select-native-2" data-mini="true" data-theme="e">
+        <option value="1">Weekdays</option>
+        <option value="2">Weekends</option>
+        <option value="3">Exam days</option>
+    </select>
+</div>
+</form>
+
+<div id="headingafter" class="ui-bar ui-bar-a" style="font-size: 3vw">
+    <h2>How much time do you spend on these tasks:</h2>
+</div>
+
+<a id="addnew" href="" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" >add</a>
+
+<table id="pieChart" class="pieChart">
+                            <tr>
+                                <th scope="col" data-type="string" style="color: black; width: 25%; background: transparent">Task</th>
+                                <th scope="col" data-type="number" style="color: black; width: 25%; background: transparent; border: 3px solid black; border-radius:initial">Duration (0 - 24)</th>
+                                
+                            </tr>                                
+                        	<tr>
+                                <td><input type="text" id="task" name="task[]"></td>
+                                <td><input type="number" id="hours" name="hours[]" min="0" max="24"></td>
+							</tr>
+</table>
+
+<ul data-role="listview" data-inset="true">
+<li><a href="#display" style="text-align: center;height: auto;font-size: 4vw; margin-bottom: 20px" data-role="button" data-theme="b" onclick="validationofinputs()">Submit</a></li> 
+
+</ul>
+
+
+<script type="text/javascript">
+
+
+$(function()
+{
+
+var newRowNum = 0;
+});
+
+
+
+$("#addnew").click(function () { 
+
+    $("#pieChart").each(function () {
+       
+        var tds = '<tr>';
+        jQuery.each($('tr:last td', this), function () {
+            tds += '<td>' + $(this).html() + '</td>';
+        });
+        tds += '</tr>';
+        if ($('tbody', this).length > 0) {
+            $('tbody', this).append(tds);
+        } else {
+            $(this).append(tds);
+        }
+
+    });
+});
+
+function validationofinputs() 
+{
+		
+    var myvalues = document.getElementsByName("hours[]");
+    var x;
+    var flag=1;
+    var sumf=1;
+    var sumtotal=0;
+    for (var i = 0; i < (myvalues.length); i=i+1) 
+    {
+      x=Number(myvalues[i].value);
+
+      if (x < 0 || x > 24 || x === "") 
+      {
+        flag=0;            
+      }
+
+      if(flag==1)
+      	sumtotal=sumtotal+x;
+
+      if(sumtotal>24)
+      {
+      	sumf=0;
+      }
+    }
+
+    if(flag==1 && sumf==1)
+    {
+      var mytable = document.getElementById('pieChart');
+	  var myinputs = mytable.getElementsByTagName('input');
+      var myoutputs=[];
+
+      for (var i = 0; i < (myinputs.length); i=i+1) 
+      {
+        myoutputs[i]=myinputs[i].value;
+      }
+      console.log(myoutputs);
+      myoutputs[i]="free";
+      myoutputs[i+1]=24-sumtotal;
+      console.log(myoutputs);
+	  localStorage.setItem("firststore", JSON.stringify(myoutputs)); 
+      window.location.href='#test',true;
+    }
+    else if(flag==0 && sumf==1)
+    	alert("Duration should be between 0 - 24");
+    else if(flag==1 && sumf==0)
+    	alert("Total hours spend on tasks has exceeded 24");
+    else
+    	alert("Please check the total and individual task hours entered");    
+}
+
+
+</script>
+</div><!-- /content -->
+<div data-role="footer">
+<h4>CS530 Developing User Interfaces 2018</h4>
+</div>
+</div><!-- /end of firstadd page -->
+
+
+
+
+
+<div data-role="page" id="test"><!-- start of test page -->
+<div data-role="header">
+<a style="font-size: 3vw" href="#" data-role="button" data-icon="gear" data-iconpos="notext" data-inline="true"></a>
+<h1 style="height: auto; width: 100%; margin:0; overflow: hidden; font-size: 4vw;">Test</h1>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('visualization', '1', {'packages':['corechart']});
+var myretrievedinputs;
+var correctinputs;
+$('#test').on('pageshow', function () {
+myretrievedinputs = localStorage.getItem("firststore");
+correctinputs = JSON.parse(myretrievedinputs);
+google.charts.setOnLoadCallback(drawChart);
+});
+
+
+
+function drawChart()
+{
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Task');
+    data.addColumn('number', 'Time');
+    for (var i = 0; i < (correctinputs.length-1); i=i+2) 
+    {
+       data.addRow([String(correctinputs[i]), Number(correctinputs[i+1])]);
+    }
+    var options = {title: 'My Daily Activities'};
+    var chart = new  google.visualization.PieChart(document.getElementById('table_div'));
+    chart.draw(data, options);
+}
+
+
+</script>
+</div>
+
+<div data-role="content" align="center">
+
+
+<div id='table_div' style="width: 900px; height: 500px;"></div>
+<a href="#" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true">Add task</a><br>	
+<a href="#" data-role="button" data-icon="minus" data-iconpos="left" data-inline="true">Delete task</a><br>	
+<div id="progressbar"></div>
+<script>
+  var percentage=80;
+$( "#progressbar" ).progressbar({
+  value: 20,
+  max: 24
+});
+
+</script>
+
+<style>
+#test.ui-page {
+    background: url(baloon.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+.ui-widget-header 
+{
+  background: hsl(111, 79%, 50%);
+  border: 1px solid #DDDDDD;
+  color: #333333;
+  font-weight: bold;
+  border-color: black;
+}
+
+#progressbar
+{
+  border-color: black;
+  width: 25%;
+  color: black;
+  right: 5vw;
+  bottom: 4vw;
+  position: absolute;
+}
+
+</style>
+<!-- <progress max="100" value="80"></progress> -->
+<!-- <style>
+progress[value] {
+  width: 250px;
+  height: 20px;
+}
+</style> -->
+
+
+</div>
+</div><!-- /end of test page -->
+
+</body>
+</html>
+
+
+<!-- localStorage.removeItem("firststore"); -->
